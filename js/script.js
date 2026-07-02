@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelector('.nav-links');
 
   if (navToggle && navLinks) {
-    const navBackdrop = document.getElementById('nav-backdrop');
     const navClose = document.getElementById('nav-close');
 
     const openNav = () => {
@@ -22,10 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('nav-open');
       navToggle.setAttribute('aria-expanded', 'true');
       navToggle.setAttribute('aria-label', 'Fechar menu');
-      if (navBackdrop) {
-        navBackdrop.classList.add('show');
-        navBackdrop.setAttribute('aria-hidden', 'false');
-      }
     };
     const closeNav = () => {
       navToggle.classList.remove('open');
@@ -33,10 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('nav-open');
       navToggle.setAttribute('aria-expanded', 'false');
       navToggle.setAttribute('aria-label', 'Abrir menu');
-      if (navBackdrop) {
-        navBackdrop.classList.remove('show');
-        navBackdrop.setAttribute('aria-hidden', 'true');
-      }
     };
 
     navToggle.addEventListener('click', (e) => {
@@ -45,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (navClose) navClose.addEventListener('click', closeNav);
-    if (navBackdrop) navBackdrop.addEventListener('click', closeNav);
 
     navLinks.querySelectorAll('.nav-mobile-body a, .nav-mobile-footer a').forEach(link => {
       link.addEventListener('click', closeNav);
