@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Agendamento | Rodrigues Auto Detailing</title>
+<meta name="description" content="Agende seu serviço de estética automotiva com a Rodrigues Auto Detailing. Preencha o formulário e envie direto pelo WhatsApp.">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============================= HEADER ============================= -->
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="Logo Rodrigues Auto Detailing">
+      <span>Rodrigues<small>Auto Detailing</small></span>
+    </a>
+
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html">Início</a>
+      <a href="index.html#antes-depois">Resultados</a>
+      <a href="index.html#servicos">Serviços</a>
+      <a href="about.html">Sobre</a>
+      <a href="booking.html" class="active">Agendamento</a>
+    </nav>
+
+    <div class="header-cta">
+      <a href="booking.html" class="btn btn-ghost">Falar no WhatsApp</a>
+      <a href="booking.html" class="btn btn-primary">Agendar agora</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================= PAGE HERO ============================= -->
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Início</a><span class="sep">/</span><span class="current">Agendamento</span></div>
+    <span class="eyebrow">Vamos marcar seu horário</span>
+    <h1>Agende seu serviço</h1>
+    <p>Preencha os dados abaixo. Ao enviar, uma mensagem já pronta abre no WhatsApp para confirmarmos seu horário.</p>
+  </div>
+</section>
+
+<!-- ============================= BOOKING ============================= -->
+<section>
+  <div class="container">
+    <div class="booking-wrap">
+
+      <div class="booking-info reveal">
+        <h2>Como funciona</h2>
+        <p>Simples, rápido e sem burocracia. Você preenche, nós confirmamos.</p>
+
+        <ul class="price-list">
+          <li><span>Lavagem detalhada — Carro (interna e externa)</span><strong>$100</strong></li>
+          <li><span>Lavagem detalhada — Moto</span><strong>$60</strong></li>
+          <li><span>Lavagem detalhada + cera — Carro (até 6 meses de proteção)</span><strong>$150</strong></li>
+          <li><span>Lavagem detalhada + cera — Moto (até 6 meses de proteção)</span><strong>$100</strong></li>
+        </ul>
+
+        <div class="booking-steps">
+          <div class="booking-step">
+            <div class="num">1</div>
+            <div>
+              <h4>Preencha o formulário</h4>
+              <p>Conte pra gente o serviço desejado, a data e como podemos te chamar.</p>
+            </div>
+          </div>
+          <div class="booking-step">
+            <div class="num">2</div>
+            <div>
+              <h4>Envie pelo WhatsApp</h4>
+              <p>Ao clicar em enviar, sua mensagem já formatada abre direto no WhatsApp.</p>
+            </div>
+          </div>
+          <div class="booking-step">
+            <div class="num">3</div>
+            <div>
+              <h4>Confirmamos com você</h4>
+              <p>Respondemos rapidamente para confirmar horário, valor e detalhes do serviço.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12a8 8 0 10-14.9 4L4 21l5.2-1.1A8 8 0 0020 12z"/><path d="M9 9c0 3 2.5 6 6 6"/></svg>
+          <div>
+            <strong>Prefere falar direto?</strong>
+            <span>WhatsApp: (31) 9178-9892</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="booking-form reveal" id="booking-form" novalidate>
+        <div class="field">
+          <label for="nome">Nome completo <span class="required">*</span></label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+        </div>
+
+        <div class="field">
+          <label for="telefone">Telefone / WhatsApp <span class="required">*</span></label>
+          <input type="tel" id="telefone" name="telefone" placeholder="(11) 91234-5678" required>
+        </div>
+
+        <div class="field">
+          <label for="servico">Tipo de serviço <span class="required">*</span></label>
+          <select id="servico" name="servico" required>
+            <option value="" disabled selected>Selecione um serviço</option>
+            <option value="lavagem-carro">Lavagem Detalhada — Carro (interna e externa) — $100</option>
+            <option value="lavagem-moto">Lavagem Detalhada — Moto — $60</option>
+            <option value="lavagem-cera-carro">Lavagem Detalhada + Cera — Carro (até 6 meses de proteção) — $150</option>
+            <option value="lavagem-cera-moto">Lavagem Detalhada + Cera — Moto (até 6 meses de proteção) — $100</option>
+            <option value="outro">Outro / Dúvida sobre serviço</option>
+          </select>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="data">Data desejada <span class="required">*</span></label>
+            <input type="date" id="data" name="data" required>
+          </div>
+          <div class="field">
+            <label for="veiculo">Modelo do veículo</label>
+            <input type="text" id="veiculo" name="veiculo" placeholder="Ex: Civic 2022">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="observacoes">Observações</label>
+          <textarea id="observacoes" name="observacoes" placeholder="Conte detalhes extras, preferências de horário, etc."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          Enviar via WhatsApp
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+
+        <div class="form-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+          <span>Seus dados são usados apenas para organizar seu atendimento e são enviados diretamente para o nosso WhatsApp.</span>
+        </div>
+
+        <div class="form-success" id="form-success">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>
+          <span>Tudo certo! Abrimos o WhatsApp com sua mensagem pronta — é só enviar por lá.</span>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================= FOOTER ============================= -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <img src="assets/logo.png" alt="Logo Rodrigues Auto Detailing">
+          <span>Rodrigues<small>Auto Detailing</small></span>
+        </a>
+        <p>Estética automotiva premium: lavagem técnica, polimento e proteção de pintura para quem exige excelência.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/rodrigues.autosdetailing?igsh=MWh2ZXZ2b3c1aXF5aA==" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 4h-2a4 4 0 00-4 4v3H7v4h2v6h4v-6h3l1-4h-4V8a1 1 0 011-1h3z"/></svg></a>
+          <a href="https://wa.me/553191789892" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12a8 8 0 10-14.9 4L4 21l5.2-1.1A8 8 0 0020 12z"/><path d="M9 9c0 3 2.5 6 6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#antes-depois">Resultados</a></li>
+          <li><a href="index.html#servicos">Serviços</a></li>
+          <li><a href="about.html">Sobre</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="index.html#servicos">Lavagem Detalhada — Carro ($100)</a></li>
+          <li><a href="index.html#servicos">Lavagem Detalhada — Moto ($60)</a></li>
+          <li><a href="index.html#servicos">Lavagem + Cera — Carro ($150)</a></li>
+          <li><a href="index.html#servicos">Lavagem + Cera — Moto ($100)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/553191789892">WhatsApp: (31) 9178-9892</a></li>
+          <li><a href="booking.html">Agendar horário</a></li>
+          <li><a href="#">São Paulo — SP</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span class="current-year">2026</span> Rodrigues Auto Detailing. Todos os direitos reservados.</span>
+      <span>Feito com cuidado no detalhe.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/553191789892" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 10-14.9 4L4 21l5.2-1.1A8 8 0 0020 12z"/><path d="M9 9c0 3 2.5 6 6 6"/></svg>
+</a>
+
+<script src="js/script.js"></script>
+</body>
+</html>
