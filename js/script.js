@@ -13,15 +13,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelector('.nav-links');
 
   if (navToggle && navLinks) {
+    const navBackdrop = document.getElementById('nav-backdrop');
+    const navClose = document.getElementById('nav-close');
+
     const openNav = () => {
       navToggle.classList.add('open');
       navLinks.classList.add('open');
       document.body.classList.add('nav-open');
+      navToggle.setAttribute('aria-expanded', 'true');
+      navToggle.setAttribute('aria-label', 'Fechar menu');
+      if (navBackdrop) {
+        navBackdrop.classList.add('show');
+        navBackdrop.setAttribute('aria-hidden', 'false');
+      }
     };
     const closeNav = () => {
       navToggle.classList.remove('open');
       navLinks.classList.remove('open');
       document.body.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Abrir menu');
+      if (navBackdrop) {
+        navBackdrop.classList.remove('show');
+        navBackdrop.setAttribute('aria-hidden', 'true');
+      }
     };
 
     navToggle.addEventListener('click', (e) => {
@@ -29,18 +44,19 @@ document.addEventListener('DOMContentLoaded', () => {
       navLinks.classList.contains('open') ? closeNav() : openNav();
     });
 
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeNav);
-    });
+    if (navClose) navClose.addEventListener('click', closeNav);
+    if (navBackdrop) navBackdrop.addEventListener('click', closeNav);
 
-    document.addEventListener('click', (e) => {
-      if (!navLinks.classList.contains('open')) return;
-      if (navLinks.contains(e.target) || navToggle.contains(e.target)) return;
-      closeNav();
+    navLinks.querySelectorAll('.nav-mobile-body a, .nav-mobile-footer a').forEach(link => {
+      link.addEventListener('click', closeNav);
     });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navLinks.classList.contains('open')) closeNav();
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 980 && navLinks.classList.contains('open')) closeNav();
     });
   }
 
