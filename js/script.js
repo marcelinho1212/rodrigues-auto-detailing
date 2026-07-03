@@ -53,15 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------------------------------------------------------------------
      2) HEADER: sombra sutil ao rolar
   --------------------------------------------------------------------- */
-  const header = document.querySelector('.site-header');
+  const header = document.querySelector('.header-wrap');
   if (header) {
     const onScroll = () => {
       if (window.scrollY > 40) {
         header.style.borderBottomColor = 'rgba(228,0,27,0.35)';
-        header.style.background = 'rgba(8,8,9,0.9)';
       } else {
         header.style.borderBottomColor = 'rgba(255,255,255,0.06)';
-        header.style.background = 'rgba(10,10,11,0.72)';
       }
     };
     window.addEventListener('scroll', onScroll, { passive: true });

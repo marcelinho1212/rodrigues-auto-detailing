@@ -54,7 +54,7 @@ body.nav-open .nav-toggle{
   opacity: 0;
   pointer-events: none;
 }
-body.nav-open .wa-float{ display: none; }
+body.nav-open .float-buttons{ display: none; }
 img{ max-width:100%; display:block; }
 a{ color:inherit; text-decoration:none; }
 ul{ list-style:none; }
@@ -150,22 +150,29 @@ section{ padding: 6.5rem 0; position: relative; }
 /* ==========================================================================
    HEADER / NAV
    ========================================================================== */
-.site-header{
+.header-wrap{
   position: fixed;
-  top:0; left:0; right:0;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 500;
   padding-top: var(--safe-top);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.header-wrap::before{
+  content: "";
+  position: absolute;
+  inset: 0;
   background: rgba(10,10,11,0.72);
   backdrop-filter: blur(10px) saturate(140%);
   -webkit-backdrop-filter: blur(10px) saturate(140%);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  transition: background .3s var(--ease), border-color .3s var(--ease);
+  z-index: -1;
 }
-.site-header .container{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: .75rem;
+.header-inner{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1.25rem;
   height: 76px;
   min-width: 0;
 }
@@ -175,8 +182,9 @@ section{ padding: 6.5rem 0; position: relative; }
   font-weight:700; letter-spacing:.04em;
   font-size: 1.05rem;
   text-transform:uppercase;
-  flex-shrink: 1;
+  flex-shrink: 0;
   min-width: 0;
+  justify-self: start;
 }
 .brand img{ height: 42px; width:42px; object-fit:contain; }
 .brand span{ display:flex; flex-direction:column; line-height:1.05; }
@@ -190,12 +198,18 @@ section{ padding: 6.5rem 0; position: relative; }
 }
 
 .nav-links{
-  display:flex; align-items:center; gap:2.4rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: clamp(1rem, 2vw, 2.4rem);
   font-family: var(--font-display);
   font-weight:600;
   letter-spacing:.06em;
   text-transform:uppercase;
-  font-size:.86rem;
+  font-size: clamp(.72rem, 1.1vw, .86rem);
+  grid-column: 2;
+  justify-self: center;
+  white-space: nowrap;
 }
 .nav-links a{
   position:relative;
@@ -219,30 +233,18 @@ section{ padding: 6.5rem 0; position: relative; }
 .nav-mobile-footer{ display: none; }
 .nav-mobile-body{ display: contents; }
 
-/* Desktop: nav fica centralizado na barra do header */
-@media (min-width: 981px){
-  .nav-links{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: calc(76px + var(--safe-top));
-    padding-top: var(--safe-top);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2.4rem;
-    z-index: 501;
-    pointer-events: none;
-    background: transparent;
-    transform: none;
-    visibility: visible;
-    overflow: visible;
-    border: none;
-  }
-  .nav-mobile-body a{ pointer-events: auto; }
-  .brand,
-  .header-cta{ position: relative; z-index: 502; }
+.header-cta{
+  display:flex;
+  align-items:center;
+  justify-content: flex-end;
+  gap: .75rem;
+  flex-shrink: 0;
+  grid-column: 3;
+  justify-self: end;
+}
+.header-cta .btn{
+  font-size: clamp(.72rem, 1vw, .86rem);
+  padding: .75rem clamp(.85rem, 1.5vw, 1.5rem);
 }
 
 .btn{
@@ -282,13 +284,6 @@ section{ padding: 6.5rem 0; position: relative; }
   color: var(--red-bright);
 }
 .btn-block{ width:100%; }
-
-.header-cta{
-  display:flex;
-  align-items:center;
-  gap:1rem;
-  flex-shrink: 0;
-}
 
 .nav-toggle{
   display:none;
@@ -725,24 +720,52 @@ section{ padding: 6.5rem 0; position: relative; }
 .footer-bottom a:hover{ color: var(--red-bright); }
 
 /* ==========================================================================
-   WHATSAPP FLOAT
+   FLOAT BUTTONS (Instagram + WhatsApp)
    ========================================================================== */
-.wa-float{
+.float-buttons{
   position: fixed;
   right: calc(16px + var(--safe-right));
   bottom: calc(16px + var(--safe-bottom));
   z-index: 400;
-  width: 58px; height: 58px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+.ig-float,
+.wa-float{
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
-  background: var(--red);
-  display:flex; align-items:center; justify-content:center;
-  box-shadow: 0 10px 26px -8px rgba(228,0,27,.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .25s var(--ease), box-shadow .25s;
+}
+.ig-float svg,
+.wa-float svg{ width: 26px; height: 26px; color: #fff; }
+
+.ig-float{
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  box-shadow: 0 10px 26px -8px rgba(225, 48, 108, .5);
+}
+.ig-float:hover{
+  transform: scale(1.06);
+  box-shadow: 0 12px 28px -6px rgba(225, 48, 108, .65);
+}
+
+.wa-float{
+  background: #25D366;
+  box-shadow: 0 10px 26px -8px rgba(37,211,102,.55);
   animation: waPulse 2.6s ease-in-out infinite;
 }
-.wa-float svg{ width:26px; height:26px; color:#fff; }
+.wa-float:hover{
+  background: #20bd5a;
+  transform: scale(1.06);
+}
 @keyframes waPulse{
-  0%,100%{ box-shadow: 0 10px 26px -8px rgba(228,0,27,.7), 0 0 0 0 rgba(228,0,27,.45); }
-  50%{ box-shadow: 0 10px 26px -8px rgba(228,0,27,.7), 0 0 0 12px rgba(228,0,27,0); }
+  0%,100%{ box-shadow: 0 10px 26px -8px rgba(37,211,102,.55), 0 0 0 0 rgba(37,211,102,.4); }
+  50%{ box-shadow: 0 10px 26px -8px rgba(37,211,102,.55), 0 0 0 12px rgba(37,211,102,0); }
 }
 
 /* ==========================================================================
@@ -890,6 +913,15 @@ section{ padding: 6.5rem 0; position: relative; }
 /* ==========================================================================
    BOOKING PAGE
    ========================================================================== */
+.booking-section{
+  padding: 3rem 0 5rem;
+}
+.booking-section .container{
+  max-width: 560px;
+}
+.booking-form--solo{
+  width: 100%;
+}
 .booking-wrap{
   display:grid;
   grid-template-columns: 1fr 1fr;
@@ -1033,6 +1065,18 @@ section{ padding: 6.5rem 0; position: relative; }
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
+@media (max-width: 1140px) and (min-width: 981px){
+  .header-inner{ gap: .85rem; }
+  .nav-links{ gap: 1.1rem; font-size: .76rem; }
+  .header-cta{ gap: .55rem; }
+  .header-cta .btn{
+    font-size: .72rem;
+    padding: .65rem .9rem;
+  }
+  .brand{ font-size: .92rem; }
+  .brand img{ height: 38px; width: 38px; }
+}
+
 @media (max-width: 980px){
   .ba-wrap{ grid-template-columns:1fr; gap: 2.4rem; }
   .ba-copy{ text-align: center; }
@@ -1051,7 +1095,11 @@ section{ padding: 6.5rem 0; position: relative; }
   .values-strip{ grid-template-columns:1fr; }
 
   /* ---- Mobile navigation ---- */
-  .site-header .container{ height: 64px; }
+  .header-inner{
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+  }
   .brand{ font-size: .92rem; gap: .55rem; }
   .brand img{ height: 36px; width: 36px; }
 
@@ -1083,6 +1131,10 @@ section{ padding: 6.5rem 0; position: relative; }
     z-index: 900;
     overflow: hidden;
     border: none;
+    grid-column: unset;
+    justify-self: unset;
+    white-space: normal;
+    font-size: 1rem;
   }
   .nav-links.open{
     transform: translateX(0);
@@ -1267,12 +1319,6 @@ section{ padding: 6.5rem 0; position: relative; }
   }
   .service-price{ font-size: 1.65rem; }
 
-  .price-list li{
-    flex-direction: column;
-    gap: .35rem;
-  }
-  .price-list li strong{ font-size: 1.3rem; }
-
   .cta-final{ padding: 4rem 0; }
   .cta-final .container{
     flex-direction: column;
@@ -1282,13 +1328,8 @@ section{ padding: 6.5rem 0; position: relative; }
   .cta-final .btn{ width: 100%; }
 
   .field-row{ grid-template-columns:1fr; }
+  .booking-section{ padding: 2rem 0 3.5rem; }
   .booking-form{ padding: 1.8rem 1.25rem; }
-  .booking-info h2{ font-size: clamp(1.45rem, 6vw, 1.9rem); }
-  .booking-contact{
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-  }
 
   .footer-grid{ grid-template-columns:1fr; gap:2rem; }
   .footer-bottom{
@@ -1322,10 +1363,12 @@ section{ padding: 6.5rem 0; position: relative; }
   .products-visual img:first-child{ margin-top: 0; }
   .products-copy .section-title{ font-size: clamp(1.65rem, 7vw, 2rem) !important; }
 
+  .ig-float,
   .wa-float{
     width: 54px;
     height: 54px;
   }
+  .ig-float svg,
   .wa-float svg{ width: 24px; height: 24px; }
 
   .field input, .field select, .field textarea{
